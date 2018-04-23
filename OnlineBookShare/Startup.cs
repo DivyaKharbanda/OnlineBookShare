@@ -27,8 +27,13 @@ namespace OnlineBookShare
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IBookMasterRepository, BookMasterRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             // Framework Dependecies 
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,11 +42,12 @@ namespace OnlineBookShare
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=User}/{action=Index}/{id?}"
+                    template: "{controller=Account}/{action=Login}/{id?}"
                     );
             }
             );

@@ -1,42 +1,39 @@
 ﻿
-<div id="content">
-    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-        <i class="glyphicon glyphicon-align-left"></i>
-        Toggle Sidebar
-    </button>
+@model BooksViewModel
+
+<h2>@Model.Title</h2>
+<table>
+    @foreach (var book in Model.books)
+    { 
+
+    <tr>
+
+        <td>@book.Title</td>
+
+        <td> @book.Author</td>
+
+        <td> @book.ShortDescription </td>
+
+        <td>@book.AvailableCount</td>
+
+    </tr>
+
+
+    }
+</table>
+<!--<div class="sidenav">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact">Contact</a>
 </div>
-<script>$(document).ready(function () {
 
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-
-});</script>
-<div class="wrapper">
-
-<nav id="sidebar">
-        <!-- Sidebar Header -->
-        <div class="sidebar-header">
-            <h3>Collapsible Sidebar</h3>
- </div>
-
-<!-- Sidebar Links -->
-<ul class="list-unstyled components">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-
-    <li>
-        <!-- Link with dropdown items -->
-        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-        <ul class="collapse list-unstyled" id="homeSubmenu">
-            <li><a href="#">Page</a></li>
-            <li><a href="#">Page</a></li>
-            <li><a href="#">Page</a></li>
-        </ul>
-
-    <li><a href="#">Portfolio</a></li>
-    <li><a href="#">Contact</a></li>
-</ul>
-    </nav>
-
-</div>
+<div class="main">
+    <h2>Sidebar</h2>
+    <p>This sidebar is of full height (100%) and always shown.</p>
+    <p>Scroll down the page to see the result.</p>
+    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+</div>-->
