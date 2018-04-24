@@ -1,0 +1,27 @@
+﻿@model BooksViewModel
+
+<div id="My_Books" class="w3-container city" style="display:none">
+    <h2>Your Books</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Book ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var book in Model.books)
+            {
+                <tr>
+                    <td>@book.BookMasterId</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.ShortDescription</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

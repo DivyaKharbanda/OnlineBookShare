@@ -1,0 +1,60 @@
+﻿@Model UpdateBookViewModel
+<div id="Update_Book" class="w3-container city" style="display:none">
+    <h2>Update Book Details</h2>
+    <div class="container">
+        <form action="/action_page.php">
+            <div class="row">
+                <div class="col-25">
+                    <label for="Book_ID">Book ID</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Book_ID" name="Book_ID" value="@Model.book" placeholder="Book ID..">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="Title">Title</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Title" name="Title" value="@Model.Title" placeholder="Title..">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="Author">Author</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Author" name="Author" value="@Model.Author" placeholder="Author">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="Short Description">Short Description</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Short_Description" name="Short_Description" value="Model.Author" placeholder="Description">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="Long Description">Long Description</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="lDescribe" name="long_description" placeholder="Long description" style="height:200px"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="price">Price</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Price" name="Price" placeholder="Price">
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+
+</div>

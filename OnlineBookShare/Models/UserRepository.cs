@@ -41,5 +41,16 @@ namespace OnlineBookShare.Models
         {
             return _appDbContext.User.Any(u => u.UserName == Username);
         }
+
+        public int AddUser(User user)
+        {
+            _appDbContext.User.Add(user);
+            return _appDbContext.SaveChanges();
+        }
+        public User GetUser(int UserId)
+        {
+            return _appDbContext.User.FirstOrDefault(u => u.UserId == UserId);
+            
+        }
     }
 }

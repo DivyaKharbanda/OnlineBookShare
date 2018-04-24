@@ -1,0 +1,19 @@
+﻿@Model 
+<div id="Delete_Book" class="w3-container city" style="display:none">
+    <h2>Delete Book Details</h2>
+    <div class="container">
+        <form action="/action_page.php">
+            <div class="row">
+                <div class="col-25">
+                    <label for="Book_ID">Book ID</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="Book_ID" value = "@Model. "name="Book_ID" placeholder="Book ID..">
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Delete">
+            </div>
+        </form>
+    </div>
+</div>

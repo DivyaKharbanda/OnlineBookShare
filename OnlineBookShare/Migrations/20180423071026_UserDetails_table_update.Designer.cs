@@ -11,9 +11,10 @@ using System;
 namespace OnlineBookShare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180423071026_UserDetails_table_update")]
+    partial class UserDetails_table_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +28,13 @@ namespace OnlineBookShare.Migrations
 
                     b.Property<string>("Author");
 
+                    b.Property<int>("AvailableCount");
+
+                    b.Property<int>("ImageNumber");
+
                     b.Property<string>("LongDescription");
+
+                    b.Property<decimal>("Price");
 
                     b.Property<string>("ShortDescription");
 

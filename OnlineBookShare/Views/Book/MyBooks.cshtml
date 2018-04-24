@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="C:\Dhruv\Spring 2018\Distributed Information System\OnlineBookShare\OnlineBookShare\OnlineBookShare\wwwroot\lib\bootstrap\dist\css\crud.css">
+    @section JavaScript
+    {
+    <script src="~/lib/bootstrap/dist/js/crud.js"></script>
+    }
+</head>
+
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:130px">
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'My_Books')">My Books</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Add_New_Books')">Add New Book</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Update_Book')">Update Book Details</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Delete_Book')">Delete Book Details</button>
+    </div>
+
+    <div style="margin-left:130px">
+
+        <div id="My_Books" class="w3-container city" style="display:none">
+            <h2>My Books</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Book ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Borrowed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Harry Potter</td>
+                        <td>IP</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>IP</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Yes</td>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="Add_New_Books" class="w3-container city" style="display:none">
+            <h2>Add New Books</h2>
+            <div class="container">
+                <form action="/action_page.php">
+
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Title">Title</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Title" name="Title" placeholder="Title..">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Author">Author</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Author" name="Author" placeholder="Author">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Short Description">Short Description</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Short_Description" name="Short_Description" placeholder="Description">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Long Description">Long Description</label>
+                        </div>
+                        <div class="col-75">
+                            <textarea id="lDescribe" name="long_description" placeholder="Long description" style="height:200px"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="price">Price</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Price" name="Price" placeholder="Price">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Add">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div id="Update_Book" class="w3-container city" style="display:none">
+            <h2>Update Book Details</h2>
+            <div class="container">
+                <form action="/action_page.php">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Book_ID">Book ID</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Book_ID" name="Book_ID" placeholder="Book ID..">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Title">Title</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Title" name="Title" placeholder="Title..">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Author">Author</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Author" name="Author" placeholder="Author">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Short Description">Short Description</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Short_Description" name="Short_Description" placeholder="Description">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Long Description">Long Description</label>
+                        </div>
+                        <div class="col-75">
+                            <textarea id="lDescribe" name="long_description" placeholder="Long description" style="height:200px"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="price">Price</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Price" name="Price" placeholder="Price">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Update">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div id="Delete_Book" class="w3-container city" style="display:none">
+            <h2>Delete Book Details</h2>
+            <div class="container">
+                <form action="/action_page.php">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="Book_ID">Book ID</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Book_ID" name="Book_ID" placeholder="Book ID..">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Delete">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

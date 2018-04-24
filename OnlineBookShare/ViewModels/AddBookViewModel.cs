@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OnlineBookShare.Models
+namespace OnlineBookShare.ViewModels
 {
-    public class BookMaster
+    public class AddBookViewModel
     {
-        public int BookMasterId { get; set; }
+        [Required]
+        [StringLength(100,ErrorMessage = "Title too big")]
         public string Title { get; set; }
+        [Required]
         public string Author { get; set; }
+        public decimal Price { get; set; }
+        [Required]
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
-
-        public int UserId { get; set; }
-        public User User { get; set; }
     }
 }

@@ -29,7 +29,9 @@ namespace OnlineBookShare
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IBookMasterRepository, BookMasterRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddTransient<IUserDetailsRepository, UserDetailsRepository>();
+            
             // Framework Dependecies 
             services.AddMvc();
             services.AddDistributedMemoryCache();
