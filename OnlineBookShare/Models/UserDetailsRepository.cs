@@ -23,5 +23,41 @@ namespace OnlineBookShare.Models
         {
             return _appDbContext.UserDeatils.FirstOrDefault(u => u.UserId == UserId);
         }
+
+        public int updateAddressByUserId(int Userid, string Address)
+        {
+            int returnValue = 0;
+            UserDetails user = _appDbContext.UserDeatils.SingleOrDefault(u => u.UserId == Userid);
+            if (user != null)
+            {
+                user.Address = Address;
+                returnValue = _appDbContext.SaveChanges();
+            }
+            return returnValue;
+        }
+
+        public int updateContactByUserId(int Userid, string ContactNumber)
+        {
+            int returnValue = 0;
+            UserDetails user = _appDbContext.UserDeatils.SingleOrDefault(u => u.UserId == Userid);
+            if (user != null)
+            {
+                user.ContactNumber = ContactNumber;
+                returnValue = _appDbContext.SaveChanges();
+            }
+            return returnValue;
+        }
+
+        public int updateEmailByUserId(int Userid, string Email)
+        {
+            int returnValue = 0;
+            UserDetails user = _appDbContext.UserDeatils.SingleOrDefault(u => u.UserId == Userid);
+            if (user != null)
+            {
+                user.Email = Email;
+                returnValue = _appDbContext.SaveChanges();
+            }
+            return returnValue;
+        }
     }
 }

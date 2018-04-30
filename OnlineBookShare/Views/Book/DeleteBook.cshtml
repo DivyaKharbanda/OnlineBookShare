@@ -1,19 +1,70 @@
-﻿@Model 
-<div id="Delete_Book" class="w3-container city" style="display:none">
-    <h2>Delete Book Details</h2>
-    <div class="container">
-        <form action="/action_page.php">
-            <div class="row">
-                <div class="col-25">
-                    <label for="Book_ID">Book ID</label>
+﻿@model DeleteBookViewModel
+@{
+    Layout = "_booksLayout";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+    .topnav-right {
+        float: right;
+    }
+</style>
+
+<div class="topnav">
+    <a asp-controller="Book" asp-action="Index">Online Book Manager</a>
+    <div class="topnav-right">
+        <a asp-controller="Account" asp-action="AddUserDetails">Add Personal Information</a>
+        <a asp-controller="Account" asp-action="updateUserDetails">Update Personal Information</a>
+        <a asp-controller="Account" asp-action="LogOff">Log Off</a>
+    </div>
+</div>
+<div style="margin-left:130px">
+
+    <div id="Delete_Book" class="w3-container city">
+        <h2>Delete Book</h2>
+        <div class="container">
+            <form asp-action="DeleteBook" asp-controller="Book">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="Book_ID">Book ID</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="BookId" type="text" id="BookId" name="BookId" placeholder="Please enter Book ID..">
+                    </div>
                 </div>
-                <div class="col-75">
-                    <input type="text" id="Book_ID" value = "@Model. "name="Book_ID" placeholder="Book ID..">
+                <div class="row">
+                    <input type="submit" value="Delete">
                 </div>
-            </div>
-            <div class="row">
-                <input type="submit" value="Delete">
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

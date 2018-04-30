@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="~/content/crud.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/crud.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:130px; padding:18px; margin-top:55px;">
+        
+        <button class="w3-bar-item w3-button tablink" onclick="@("window.location.href='" + @Url.Action("Index", "Book") + "'");">My Books</button>
+        <button class="w3-bar-item w3-button tablink" onclick="@("window.location.href='" + @Url.Action("AddBook", "Book") + "'");">Add New Book</button>
+        <button class="w3-bar-item w3-button tablink" onclick="@("window.location.href='" + @Url.Action("Update", "Book") + "'");">Update Book Details</button>
+        <button class="w3-bar-item w3-button tablink" onclick="@("window.location.href='" + @Url.Action("DeleteBook", "Book") + "'");">Delete Book Details</button>
+    </div>
+
+        <div>
+            @RenderBody()
+        </div>
+</body>
+</html>

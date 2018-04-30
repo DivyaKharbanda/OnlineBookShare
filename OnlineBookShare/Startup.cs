@@ -26,10 +26,10 @@ namespace OnlineBookShare
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("Development")));
 
             services.AddTransient<IBookMasterRepository, BookMasterRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserDetailsRepository, UserDetailsRepository>();
             
             // Framework Dependecies 
@@ -49,7 +49,7 @@ namespace OnlineBookShare
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Account}/{action=Login}/{id?}"
+                    template: "{controller=Home}/{action=Index}/{id?}"
                     );
             }
             );

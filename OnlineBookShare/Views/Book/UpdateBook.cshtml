@@ -1,60 +1,105 @@
-﻿@Model UpdateBookViewModel
-<div id="Update_Book" class="w3-container city" style="display:none">
-    <h2>Update Book Details</h2>
-    <div class="container">
-        <form action="/action_page.php">
-            <div class="row">
-                <div class="col-25">
-                    <label for="Book_ID">Book ID</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="Book_ID" name="Book_ID" value="@Model.book" placeholder="Book ID..">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="Title">Title</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="Title" name="Title" value="@Model.Title" placeholder="Title..">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="Author">Author</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="Author" name="Author" value="@Model.Author" placeholder="Author">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="Short Description">Short Description</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="Short_Description" name="Short_Description" value="Model.Author" placeholder="Description">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="Long Description">Long Description</label>
-                </div>
-                <div class="col-75">
-                    <textarea id="lDescribe" name="long_description" placeholder="Long description" style="height:200px"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="price">Price</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="Price" name="Price" placeholder="Price">
-                </div>
-            </div>
-            <div class="row">
-                <input type="submit" value="Update">
-            </div>
-        </form>
-    </div>
+﻿@model UpdateBookViewModel
+@{
+    Layout = "_booksLayout";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+    .topnav-right {
+        float: right;
+    }
+</style>
+
+<div class="topnav">
+    <a asp-controller="Book" asp-action="Index">Online Book Manager</a>
+    <div class="topnav-right">
+        <a asp-controller="Account" asp-action="UserDetails">Account Settings</a>
+        <a asp-controller="Account" asp-action="LogOff">Log Off</a>
+    </div>
+</div>
+<div style="margin-left:130px">
+    
+    <div id="Update_Book" class="w3-container city" >
+        <h2>Update Book Details</h2>
+        <div class="container">
+            <form asp-action="UpdateBook" asp-controller="Book" class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="BookMasterId">Book ID</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="BookMasterId" type="text" id="Book_ID" name="Book_ID" placeholder="Book ID..">
+                    </div>
+                </div>
+               
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="Title">Title</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Title" type="text" id="Title" name="Title" placeholder="Title..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="Author">Author</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Author" type="text" id="Author" name="Author" placeholder="Author">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="ShortDescription">Short Description</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="ShortDescription" type="text" id="Short_Description" name="Short_Description" placeholder="Description">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="LongDescription">Long Description</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea asp-for="LongDescription" name="long_description" placeholder="Long description" style="height:200px"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                   @using (Html.BeginForm("UpdateBook", "BookController", FormMethod.Post))
+                   {
+                    <input type="submit" value="UpdateBook">
+                   }
+                </div>
+            </form>
+        </div>
+
+    </div>
 </div>

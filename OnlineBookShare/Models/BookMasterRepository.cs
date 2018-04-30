@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,14 +21,32 @@ namespace OnlineBookShare.Models
         }
         public int AddBook(BookMaster book)
         {
+            int returnValue = 0;
             _appDbContext.BookMaster.Add(book);
-            return _appDbContext.SaveChanges();
+            try
+            {
+                returnValue = _appDbContext.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return returnValue;
         }
 
         public int DeleteBook(BookMaster book)
         {
+            int returnValue = 0;
             _appDbContext.BookMaster.Remove(book);
-            return _appDbContext.SaveChanges();
+            try
+            {
+                returnValue = _appDbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return returnValue;
         }
 
         public List<BookMaster> GetBooksByUserId(int UserId)

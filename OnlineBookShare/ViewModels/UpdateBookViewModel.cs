@@ -7,6 +7,7 @@ namespace OnlineBookShare.ViewModels
 {
     public class UpdateBookViewModel
     {
+        public bool InfoFetched { get; set; }
         public int BookMasterId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }

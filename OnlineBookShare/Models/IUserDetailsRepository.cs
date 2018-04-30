@@ -9,5 +9,9 @@ namespace OnlineBookShare.Models
     {
         int AddUserDetails(UserDetails User);
         UserDetails GetUserDetails(int UserId);
+        int updateAddressByUserId(int Userid, string Address);
+        int updateContactByUserId(int Userid, string ContactNumber);
+        int updateEmailByUserId(int Userid, string Email);
+
     }
 }

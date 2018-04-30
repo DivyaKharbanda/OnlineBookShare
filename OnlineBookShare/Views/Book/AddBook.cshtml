@@ -1,53 +1,107 @@
 ﻿@model AddBookViewModel
+@{
+    Layout = "_booksLayout";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-<div id="Add_New_Books" class="w3-container city" style="display:none">
-    <h2>Add New Books</h2>
-    <div class="container">
-        <form action="/action_page.php">
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
 
-            <div class="row">
-                <div class="col-25">
-                    <label asp-for="Title"></label>
-                </div>
-                <div class="col-75">
-                    <input asp-for="Title" type="text" id="Title" name="title" placeholder="Title.."/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label asp-for="Author">Author</label>
-                </div>
-                <div class="col-75">
-                    <input asp-for="Author" type="text" id="Author" name="Author" placeholder="Author">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label asp-for="ShortDescription">Short Description</label>
-                </div>
-                <div class="col-75">
-                    <input asp-for="ShortDescription" type="text" id="Short_Description" name="Short_Description" placeholder="Description">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="Long Description">Long Description</label>
-                </div>
-                <div class="col-75">
-                    <textarea id="lDescribe" name="long_description" value="@Model.LongDescription" placeholder="Long description" style="height:200px"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="price">Price</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="Price" name="Price" value="@Model.Price" placeholder="Price">
-                </div>
-            </div>
-            <div class="row">
-                <input type="submit" value="Add">
-            </div>
-        </form>
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+    .topnav-right {
+        float: right;
+    }
+</style>
+
+<div class="topnav">
+    <a asp-controller="Book" asp-action="Index">Online Book Manager</a>
+    <div class="topnav-right">
+        <a asp-controller="Account" asp-action="AddUserDetails">Add Personal Information</a>
+        <a asp-controller="Account" asp-action="updateUserDetails">Update Personal Information</a>
+        <a asp-controller="Account" asp-action="LogOff">Log Off</a>
     </div>
-<</div>
+</div>
+<div style="margin-left:150px;margin-top:20px">
+
+    <div id="Add_New_Books" class="w3-container city">
+        <h2>Add New Books</h2>
+        <div class="container">
+            <form asp-controller="Book" asp-action="AddBook" method="post">
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="Title"></label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Title" type="text" id="Title" name="title" placeholder="Title.." />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="Author">Author</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="Author" type="text" id="Author" name="Author" placeholder="Author">
+                        <span asp-validation-for="Author" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="ShortDescription">Short Description</label>
+                    </div>
+                    <div class="col-75">
+                        <input asp-for="ShortDescription" type="text" id="ShortDescription" name="ShortDescription" placeholder="Description">
+                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label asp-for="LongDescription">Long Description</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea asp-for="LongDescription" name="LongDescription" placeholder="LongDescription" style="height:200px"></textarea>
+                        <span asp-validation-for="LongDescription" class="text-danger"></span>
+                    </div>
+                </div>
+                @*<div class="row">
+                        <div class="col-25">
+                            <label for="price">Price</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="Price" name="Price" value="@Model.Price" placeholder="Price">
+                        </div>
+                    </div>*@
+                <div class="row">
+                    <input type="submit" value="Add">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

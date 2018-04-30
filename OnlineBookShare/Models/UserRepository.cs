@@ -52,5 +52,30 @@ namespace OnlineBookShare.Models
             return _appDbContext.User.FirstOrDefault(u => u.UserId == UserId);
             
         }
+
+        public int updateUserNameByUserId(int Userid,string Username)
+        {
+            int returnValue = 0;
+            User user = _appDbContext.User.SingleOrDefault(u => u.UserId == Userid);
+            if(user!= null)
+            {
+                user.UserName = Username;
+                returnValue = _appDbContext.SaveChanges();
+            }
+            return returnValue;
+        }
+
+
+        public int ChangePassword(int userId, string password)
+        {
+            int returnValue = 0;
+            User user = _appDbContext.User.SingleOrDefault(u => u.UserId == userId);
+            if (user != null)
+            {
+                user.Password = password;
+                returnValue = _appDbContext.SaveChanges();
+            }
+            return returnValue;
+        }
     }
 }

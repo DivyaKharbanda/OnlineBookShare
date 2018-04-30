@@ -1,27 +1,99 @@
 ﻿@model BooksViewModel
+@{
+    Layout = "_booksLayout";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-<div id="My_Books" class="w3-container city" style="display:none">
-    <h2>Your Books</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Book ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Author</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            @foreach (var book in Model.books)
-            {
-                <tr>
-                    <td>@book.BookMasterId</td>
-                    <td>@book.Title</td>
-                    <td>@book.Author</td>
-                    <td>@book.ShortDescription</td>
-                </tr>
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
             }
-        </tbody>
-    </table>
+
+            .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+    .topnav-right {
+        float: right;
+    }
+</style>
+
+   <div class="topnav">
+    <a asp-controller="Book" asp-action="Index">Online Book Manager</a>
+    <div class="topnav-right">
+        <a asp-controller="Account" asp-action="AddUserDetails">Add Personal Information</a>
+        <a asp-controller="Account" asp-action="updateUserDetails">Update Personal Information</a>
+        <a asp-controller="Account" asp-action="LogOff">Log Off</a>
+    </div>
 </div>
+
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/content/site.css" rel="stylesheet" />
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="width:150px; height:20px;">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Bethany's Pie Shop</a></li>
+                    <li><a asp-controller="Feedback" asp-action="Index">Feedback</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="registerLink" asp-controller="Account" asp-action="UserDetails">User Details</a></li>
+                    <li><a id="loginLink" asp-controller="Book" asp-action="Index">Your Books</a></li>
+                </ul>
+                <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+                      method="post" class="navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </nav>*@
+    <div style="margin-left:130px">
+        <div id="My_Books" class="w3-container city">
+            <h2>Your Books</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Book ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var book in Model.books)
+            {
+                        <tr>
+                            <td>@book.BookMasterId</td>
+                            <td>@book.Title</td>
+                            <td>@book.Author</td>
+                            <td>@book.ShortDescription</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+                <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    </div>

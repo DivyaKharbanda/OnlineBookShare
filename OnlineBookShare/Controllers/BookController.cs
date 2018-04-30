@@ -22,13 +22,23 @@ namespace OnlineBookShare.Controllers
         public IActionResult Index()
         {
             int UserId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
-            var booksList = _bookMasterRepository.GetBooksByUserId(UserId);
-            var booksViewModel = new BooksViewModel
+            var booksList = _bookMasterRepository.GetBooksByUserId(UserId).ToList();
+
+            var booksViewModel = new BooksViewModel();
+            if (booksList != null && booksList.Count() != 0)
             {
-                Title = "Your Books",
-                books = booksList
-            };
-            return View(booksViewModel);
+                booksViewModel.Title = "Your Books";
+                booksViewModel.books = booksList;
+                return View(booksViewModel);
+            }
+            else
+            {
+                booksViewModel.Title = "Your Books";
+                booksViewModel.books = booksList;
+                ModelState.AddModelError("", "You don't have any books in system. Please add a book.");
+                return View(booksViewModel);
+            }
+            
         }
 
         public IActionResult AddBook()
@@ -52,9 +62,9 @@ namespace OnlineBookShare.Controllers
                 };
                 if (_bookMasterRepository.AddBook(bookToAdd) > 0)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Book");
                 }
-                ModelState.AddModelError("", "Operation unsuccessful. Please raise a ticket or try again!");
+                ModelState.AddModelError("", "Operation unsuccessful. Book already present in database.");
                 return View(book);
             }
             return View(book);
@@ -65,31 +75,63 @@ namespace OnlineBookShare.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult DeleteBook(int bookId)
+        public IActionResult DeleteBook(DeleteBookViewModel bookModel)
         {
-            BookMaster bookToDelete = _bookMasterRepository.GetBook(bookId);
+            BookMaster bookToDelete = _bookMasterRepository.GetBook(bookModel.BookId);
             int deleteSuccessFlag = _bookMasterRepository.DeleteBook(bookToDelete);
             if (deleteSuccessFlag > 0)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Book");
             }
-            return View();
+            ModelState.AddModelError("", "Operation unsuccessful. Book id is not correct.");
+            return View(bookModel);
         }
-        public IActionResult UpdateBook()
+        public IActionResult Update()
         {
-            return View();
+            var updateBookView = new UpdateBookViewModel
+            {
+                InfoFetched = false,
+                Title = "",
+                Author = "",
+                BookMasterId = 0,
+                ShortDescription = "",
+                LongDescription = ""
+            };
+            return View(updateBookView);
         }
-        
         [HttpPost]
-        public IActionResult UpdateBook(int bookId)
+        public IActionResult Update(UpdateBookViewModel book)
         {
-            BookMaster bookToUpdate = _bookMasterRepository.GetBook(bookId);
+            BookMaster bookToUpdate = _bookMasterRepository.GetBook(book.BookMasterId);
+            if(bookToUpdate != null)
+            {
+                var updateBookViewModel = new UpdateBookViewModel
+                {
+                    InfoFetched = true,
+                    Title = bookToUpdate.Title,
+                    Author = bookToUpdate.Author,
+                    BookMasterId = bookToUpdate.BookMasterId,
+                    ShortDescription = bookToUpdate.ShortDescription,
+                    LongDescription = bookToUpdate.LongDescription
+                };
+                ModelState.AddModelError("", "Sorry!Feature not implemented yet.");
+                return View(updateBookViewModel);
+            }
+            ModelState.AddModelError("", "Operation unsuccessful. Book id is not correct.");
+            return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateBook(UpdateBookViewModel book)
+        {
+            BookMaster bookToUpdate = _bookMasterRepository.GetBook(book.BookMasterId);
             int updateSuccessFlag = _bookMasterRepository.DeleteBook(bookToUpdate);
             if (updateSuccessFlag > 0)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Book");
             }
-            return View();
+            ModelState.AddModelError("", "Operation not successfull");
+            return RedirectToAction("Update", "Book");
         }
     }
 }

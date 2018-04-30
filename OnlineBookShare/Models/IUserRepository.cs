@@ -11,6 +11,8 @@ namespace OnlineBookShare.Models
         bool IsValidUser(LoginViewModel user);
         int GetUserId(string Username);
         int AddUser(User user);
+        int updateUserNameByUserId(int Userid, string Username);
+        int ChangePassword(int userId, string password);
         User GetUser(int UserId);
     }
 }

@@ -1,37 +1,67 @@
 ﻿@model AddUserDeatilsViewModel
 
-<form asp-action="AddUserDetails" asp-controller="Account" method="post" class="form-horizontal" role="form">
 
-    <div asp-validation-summary="All" class="text-danger"></div>
-    
-    <span class="label label-default">Enter Your Details</span> 
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="~/content/site.css" rel="stylesheet" />
+<link href="~/content/crud.css" rel="stylesheet" />
+<style>
+    input[type=text], select, textarea {
+        width: 50%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+</style>
+<script src="~/lib/bootstrap/dist/js/crud.js"></script>
 
-    <div class="form-group">
-        <label asp-for="Address" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Address" class="form-control" />
-            <span asp-validation-for="Address" class="text-danger"></span>
-        </div>
+<div class="topnav">
+    <a asp-controller="Book" asp-action="Index">Online Book Manager</a>
+    <div class="topnav-right">
+        <a asp-controller="Account" asp-action="AddUserDetails">Add Personal Information</a>
+        <a asp-controller="Account" asp-action="updateUserDetails">Update Personal Information</a>
+        <a asp-controller="Account" asp-action="LogOff">Log Off</a>
     </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="ContactNumber" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="ContactNumber" class="form-control" />
-            <span asp-validation-for="ContactNumber" class="text-danger"></span>
-        </div>
-    </div>
+<h2>Add User Details</h2>
+<div class="container">
+    <form asp-action="AddUserDetails" asp-controller="Account" method="post" class="form-horizontal" role="form">
+        <div asp-validation-summary="All" class="text-danger"></div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-primary" value="Register" />
+        <div class="row">
+            <div class="col-25">
+                <label asp-for="Email" class="col-md-2 control-label"></label>
+            </div>
+            <div class="col-75">
+                <input asp-for="Email" class="form-control" style="width: 200px;" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-</form>
+
+        <div class="row">
+            <div class="col-25">
+                <label asp-for="Address" class="col-md-2 control-label"></label>
+            </div>
+            <div class="col-75">
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label asp-for="ContactNumber" class="col-md-2 control-label"></label>
+            </div>
+            <div class="col-75">
+                <input asp-for="ContactNumber" class="form-control" />
+                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+

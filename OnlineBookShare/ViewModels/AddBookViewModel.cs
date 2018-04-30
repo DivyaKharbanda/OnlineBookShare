@@ -13,7 +13,7 @@ namespace OnlineBookShare.ViewModels
         public string Title { get; set; }
         [Required]
         public string Author { get; set; }
-        public decimal Price { get; set; }
+       // public decimal Price { get; set; }
         [Required]
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }

@@ -33,7 +33,7 @@ namespace OnlineBookShare.Controllers
             if (_userRepository.IsValidUser(user))
             {
                 HttpContext.Session.SetString("UserId", _userRepository.GetUserId(user.UserName).ToString());
-                return RedirectToAction("UserDetails", "Account");
+                return RedirectToAction("Index", "Book");
             }
             ModelState.AddModelError("", "User name/password not found");
             return View(user);
@@ -56,7 +56,7 @@ namespace OnlineBookShare.Controllers
                 if(_userRepository.AddUser(user) > 0)
                 {
                     HttpContext.Session.SetString("UserId", _userRepository.GetUserId(user.UserName).ToString());
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Book");
                 }
                 ModelState.AddModelError("", "Operation unsuccessful. Please raise a ticket or try again!");
                 return View(User);
@@ -85,7 +85,7 @@ namespace OnlineBookShare.Controllers
                 };
                 if(_userDetailsRepository.AddUserDetails(userDetails) > 0)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Book");
                 }
                 ModelState.AddModelError("", "Operation unsuccessful. Please raise a ticket or try again!");
                 return View(UserDetailsViewModel);
@@ -112,11 +112,51 @@ namespace OnlineBookShare.Controllers
             }
             return RedirectToAction("AddUserDetails", "Account");
         }
+        public IActionResult updateUserDetails()
+        {
+            int UserId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+            UpdateUserViewModel user = new UpdateUserViewModel();
+            
+            UserDetails userDetailsToRender = _userDetailsRepository.GetUserDetails(UserId);
+            if(userDetailsToRender != null)
+            {
+                user.UserId = UserId;
+                user.ContactNumber = userDetailsToRender.ContactNumber;
+                user.Address = userDetailsToRender.Address;
+                user.Email = userDetailsToRender.Email;
+            }
+            if(user.Address != null)
+            {
+                return View(user);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please add details first.");
+                return View(user);
+            }
+            
+        }
+
+        [HttpPost]
+        public IActionResult updateUserDetails(UpdateUserViewModel UserViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _userDetailsRepository.updateAddressByUserId(UserViewModel.UserId,UserViewModel.Address);
+                _userDetailsRepository.updateContactByUserId(UserViewModel.UserId, UserViewModel.ContactNumber);
+                _userDetailsRepository.updateEmailByUserId(UserViewModel.UserId, UserViewModel.Email);
+                return RedirectToAction("Index","Book");
+                
+            }
+            ModelState.AddModelError("", "Please see the admin.");
+            return View(UserViewModel);
+        }
 
         public IActionResult LogOff()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
     }
 }
